@@ -1,6 +1,8 @@
 import { bonusCards } from "../../data/bonusCards";
 import { birdCards } from "../../data/birdCards";
+import { nanoid } from "nanoid";
 
+//cards
 export let playerBirdHand = [];
 export let playerBonusHand = [];
 
@@ -23,3 +25,29 @@ export const dealCards = () => {
 
 export const birdCardDeck = shuffle(birdCards);
 export const bonusCardDeck = shuffle(bonusCards);
+
+//food supply
+export const initializePlayerFoodSupply = () => {
+  let feedSupply = [];
+
+  for (let i = 1; i <= 5; i++) {
+    switch (i) {
+      case 1:
+        feedSupply.push({ type: "seed", id: nanoid() });
+        break;
+      case 2:
+        feedSupply.push({ type: "invertebrate", id: nanoid() });
+        break;
+      case 3:
+        feedSupply.push({ type: "fruit", id: nanoid() });
+        break;
+      case 4:
+        feedSupply.push({ type: "rodent", id: nanoid() });
+        break;
+      case 5:
+        feedSupply.push({ type: "fish", id: nanoid() });
+        break;
+    }
+  }
+  return feedSupply;
+};
