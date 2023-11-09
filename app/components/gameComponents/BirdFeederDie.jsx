@@ -3,30 +3,28 @@ import { useAtom } from "jotai";
 import {
   birdFeederAtom,
   playerFoodSupplyAtom,
-  wingspanStore,
+  disableRollingAtom,
 } from "../../utils/jotaiStore";
+import {
+  takeDie,
+  enableRolling,
+} from "../../utils/gameFunctions/birdFeederFunctions";
 
-const BirdFeederDice = ({ foodType }) => {
-  const [birdFeeder, setBirdFeeder] = useAtom(birdFeederAtom);
-  const [playerFoodSupply, setPlayerFoodSupply] = useAtom(playerFoodSupplyAtom);
-
-  const takeDie = (diceId) => {
-    let initialSupply = birdFeeder;
-
-    const index = initialSupply.map((e) => e.id).indexOf(diceId);
-    const [die] = initialSupply.splice(index, 1);
-
-    setPlayerFoodSupply((prev) => [...prev, die]);
-  };
+const BirdFeederDie = ({ foodType }) => {
+  const [birdFeeder] = useAtom(birdFeederAtom);
+  const [, setPlayerFoodSupply] = useAtom(playerFoodSupplyAtom);
+  const [, setDisableRolling] = useAtom(disableRollingAtom);
 
   return (
     <div
       className="border-2 border-slate-900 rounded-full px-5 py-3 bg-teal-400"
-      onClick={() => takeDie(foodType.id)}
+      onClick={() =>
+        takeDie(birdFeeder, setPlayerFoodSupply, foodType.id, setDisableRolling)
+      }
     >
-      {foodType.type} {foodType.id}
+      {foodType.type}
     </div>
   );
 };
 
-export default BirdFeederDice;
+export default BirdFeederDie;

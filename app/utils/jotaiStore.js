@@ -8,7 +8,10 @@ import {
   dealCards,
   initializePlayerFoodSupply,
 } from "./gameSetup/gameSetup";
-import { rollBirdFeeder } from "./gameFunctions/birdFeederFunctions";
+import {
+  rollBirdFeeder,
+  enableRolling,
+} from "./gameFunctions/birdFeederFunctions";
 
 export const wingspanStore = createStore();
 
@@ -24,5 +27,10 @@ export const bonusVPAtom = atom(0);
 export const birdVPAtom = atom(0);
 
 //food
-export const birdFeederAtom = atom(rollBirdFeeder());
+const initialRoll = rollBirdFeeder();
+export const birdFeederAtom = atom(initialRoll);
 export const playerFoodSupplyAtom = atom(initializePlayerFoodSupply());
+
+//
+
+export const disableRollingAtom = atom(false);

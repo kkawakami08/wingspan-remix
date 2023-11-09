@@ -6,12 +6,7 @@ import {
   birdFeederAtom,
   playerFoodSupplyAtom,
 } from "../utils/jotaiStore";
-import {
-  BirdCard,
-  BonusCard,
-  FoodToken,
-  BirdFeederDice,
-} from "./gameComponents";
+import { BirdCard, BonusCard, FoodToken, BirdFeeder } from "./gameComponents";
 
 const Test = () => {
   const [birdHand] = useAtom(birdHandAtom);
@@ -27,9 +22,6 @@ const Test = () => {
     <BonusCard bonus={bonus} key={bonus.name} />
   ));
 
-  const birdFeederContent = birdFeeder.map((item) => (
-    <BirdFeederDice foodType={item} key={item.id} />
-  ));
   const playerFoodSupplyContent = playerFoodSupply.map((item) => (
     <FoodToken foodType={item} key={item.id} />
   ));
@@ -40,8 +32,8 @@ const Test = () => {
       <div className="flex gap-3">{birdHandContent}</div>
       <p>Bonus Hand</p>
       <div className="flex gap-3">{bonusHandContent}</div>
-      <p>Bird Feeder</p>
-      <div className="flex gap-3 flex-wrap">{birdFeederContent}</div>
+      <BirdFeeder />
+
       <p>Player Food Supply</p>
       <div className="flex gap-3 flex-wrap">{playerFoodSupplyContent}</div>
     </div>

@@ -26,10 +26,14 @@ const BirdCard = ({ bird }) => {
     cache,
   } = bird.power.variable;
 
+  let powerColor = "";
+  if (color === "pink") powerColor = "bg-power_pink";
+  if (color === "brown") powerColor = "bg-brown";
+
   return (
     <div className="border-2 border-slate-900 rounded-lg text-xs p-3 bg-orange-200">
       <p className="text-lg">{common_name}</p>
-      <p className={`bg-${color}`}>Power: {description}</p>
+      <p className={powerColor}>Power: {description}</p>
 
       <p>Points: {vp}</p>
     </div>
