@@ -1,6 +1,4 @@
 import styles from "./styles/tailwind.css";
-import { ClientOnly } from "./components/ClientOnly";
-import { Fallback } from "./components/Fallback";
 
 import {
   Links,

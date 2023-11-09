@@ -1,11 +1,18 @@
 import Test from "../components/Test";
-import { ClientOnly } from "../components/ClientOnly";
-import { Fallback } from "../components/Fallback";
+import { ClientOnly } from "../components/hydration/ClientOnly";
+import { InitialLoad } from "../components/hydration/Fallback";
+import { Provider } from "jotai";
 
 export const meta = () => {
-  return [{ title: "New Remix App" }];
+  return [{ title: "Wingspan" }];
 };
 
 export default function Index() {
-  return <ClientOnly fallback={<Fallback />}>{() => <Test />}</ClientOnly>;
+  return (
+    <ClientOnly fallback={<InitialLoad />}>
+      <Provider>
+        <Test />
+      </Provider>
+    </ClientOnly>
+  );
 }

@@ -1,5 +1,4 @@
-import * as React from "react";
-import { useHydrated } from "../utils/hydration/use-hydrated";
+import { useHydrated } from "../../utils/hydration/use-hydrated";
 
 /**
  * Render the children only after the JS has loaded client-side. Use an optional
@@ -17,5 +16,5 @@ import { useHydrated } from "../utils/hydration/use-hydrated";
  * ```
  */
 export function ClientOnly({ children, fallback = null }) {
-  return useHydrated() ? <>{children()}</> : <>{fallback}</>;
+  return useHydrated() ? <>{children}</> : <>{fallback}</>;
 }

@@ -1,5 +1,7 @@
 import { bonusCards } from "../../data/bonusCards";
+import { birdCards } from "../../data/birdCards";
 
+export let playerBirdHand = [];
 export let playerBonusHand = [];
 
 const shuffle = (array) => {
@@ -19,4 +21,5 @@ export const dealCards = () => {
   }
 };
 
+export const birdCardDeck = shuffle(birdCards);
 export const bonusCardDeck = shuffle(bonusCards);
