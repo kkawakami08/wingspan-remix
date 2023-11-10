@@ -35,17 +35,6 @@ const BirdCard = ({ bird, starting }) => {
   const [startingBirds, setStartingBirds] = useAtom(startingBirdsAtom);
   const [birdHand, setBirdHand] = useAtom(birdHandAtom);
 
-  const deselectCard = () => {
-    const initialHand = startingBirds;
-    const selectedCardIndex = initialHand
-      .map((bird) => bird.common_name)
-      .indexOf(common_name);
-    const [selectedBird] = initialHand.splice(selectedCardIndex, 1);
-
-    setBirdHand((prev) => [...prev, selectedBird]);
-    setStartingBirds(initialHand);
-  };
-
   const birdSelection = () => {
     if (starting) {
       deselectCard(

@@ -8,9 +8,10 @@ import {
   startingBirdsAtom,
 } from "../utils/jotaiStore";
 import { BirdCard, BonusCard, FoodToken, BirdFeeder } from "./gameComponents";
+import { saveSelection } from "../utils/gameSetup/gameSetup";
 
 const Test = () => {
-  const [birdHand] = useAtom(birdHandAtom);
+  const [birdHand, setBirdHand] = useAtom(birdHandAtom);
   const [bonusHand] = useAtom(bonusHandAtom);
   const [birdFeeder] = useAtom(birdFeederAtom);
   const [playerFoodSupply] = useAtom(playerFoodSupplyAtom);
@@ -30,13 +31,20 @@ const Test = () => {
   const playerFoodSupplyContent = playerFoodSupply.map((item) => (
     <FoodToken foodType={item} key={item.id} />
   ));
-  // console.log("from test", startingBirds);
+
   return (
     <div>
       <p>Bird Hand</p>
       <div className="flex gap-3">{birdHandContent}</div>
       <p>Selected Birds</p>
       <div className="flex gap-3">{startingBirdsContent}</div>
+      <button
+        onClick={() =>
+          saveSelection(startingBirds, setBirdHand, setStartingBirds)
+        }
+      >
+        Select these birds!
+      </button>
       {/* <p>Bonus Hand</p>
       <div className="flex gap-3">{bonusHandContent}</div>
       <BirdFeeder />
