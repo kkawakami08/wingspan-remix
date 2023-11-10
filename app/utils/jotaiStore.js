@@ -8,10 +8,7 @@ import {
   dealCards,
   initializePlayerFoodSupply,
 } from "./gameSetup/gameSetup";
-import {
-  rollBirdFeeder,
-  enableRolling,
-} from "./gameFunctions/birdFeederFunctions";
+import { rollBirdFeeder } from "./gameFunctions/birdFeederFunctions";
 
 //inital cards
 dealCards();
@@ -24,7 +21,6 @@ export const bonusHandAtom = atom(playerBonusHand);
 export const startingBirdsAtom = atom([]);
 export const startingBonusAtom = atom([]);
 export const startingFoodAtom = atom([]);
-export const disableSelectionAtom = atom(true);
 
 //VP
 export const bonusVPAtom = atom(0);
@@ -37,3 +33,7 @@ export const playerFoodSupplyAtom = atom(initializePlayerFoodSupply());
 
 //roll dice boolean
 export const disableRollingAtom = atom(false);
+
+//discard piles
+export const discardBonusCardsAtom = atom([]);
+export const discardBirdCardsAtom = atom([]);

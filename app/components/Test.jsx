@@ -8,10 +8,11 @@ import {
   startingBirdsAtom,
   startingBonusAtom,
   startingFoodAtom,
-  disableSelectionAtom,
+  discardBirdCardsAtom,
+  discardBonusCardsAtom,
 } from "../utils/jotaiStore";
 import { BirdCard, BonusCard, FoodToken, BirdFeeder } from "./gameComponents";
-import { enableSelection, saveSelection } from "../utils/gameSetup/gameSetup";
+import { saveSelection } from "../utils/gameSetup/gameSetup";
 
 const Test = () => {
   const [birdHand, setBirdHand] = useAtom(birdHandAtom);
@@ -21,7 +22,8 @@ const Test = () => {
   const [startingBirds, setStartingBirds] = useAtom(startingBirdsAtom);
   const [startingBonus, setStartingBonus] = useAtom(startingBonusAtom);
   const [startingFood, setStartingFood] = useAtom(startingFoodAtom);
-  const [disableSelection, setDisableSelection] = useAtom(disableSelectionAtom);
+  const [birdDiscard, setBirdDiscard] = useAtom(discardBirdCardsAtom);
+  const [bonusDiscard, setBonusDiscard] = useAtom(discardBonusCardsAtom);
 
   let displaySubmit =
     (startingBirds.length > 0) & (startingFood.length > 0) &&
@@ -51,10 +53,23 @@ const Test = () => {
   ));
 
   const submitHand = () => {
-    saveSelection(startingBirds, setBirdHand, setStartingBirds);
+    saveSelection(
+      startingBirds,
+      birdHand,
+      setBirdHand,
+      setStartingBirds,
+      setBirdDiscard
+    );
     setStartingFood([]);
-    saveSelection(startingBonus, setBonusHand, setStartingBonus);
+    saveSelection(
+      startingBonus,
+      bonusHand,
+      setBonusHand,
+      setStartingBonus,
+      setBonusDiscard
+    );
   };
+  console.log("bird discard", birdDiscard, "bonus discard", bonusDiscard);
 
   return (
     <div>
@@ -64,7 +79,7 @@ const Test = () => {
       <p>Need to spend {startingBirds.length} food</p>
       <div className="flex gap-3">{startingBirdHandContent}</div>
       <p>Player food supply: </p>
-      <div className="flex gap-3">{playerFoodSupplyContent}</div>
+      <div className="flex gap-3 flex-wrap">{playerFoodSupplyContent}</div>
       <p>Selected food to discard</p>
       <p>discard {startingFood.length} food</p>
       <div className="flex gap-3">{startingFoodSupplyContent}</div>

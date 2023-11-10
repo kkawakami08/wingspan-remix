@@ -35,9 +35,7 @@ const FoodToken = ({ foodType, starting }) => {
       onClick={foodSelection}
     >
       {starting && <p>SELECTED!</p>}
-      <p className="text-lg">
-        {type} {id}
-      </p>
+      <p className="text-lg">{type}</p>
     </div>
   );
 };

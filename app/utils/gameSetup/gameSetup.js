@@ -77,7 +77,14 @@ export const deselectCard = (
   setStartingHand(initialHand);
 };
 
-export const saveSelection = (selectedCards, setHand, setSelectedCards) => {
+export const saveSelection = (
+  selectedCards,
+  hand,
+  setHand,
+  setSelectedCards,
+  setDiscardCards
+) => {
   setHand(selectedCards);
+  setDiscardCards((prev) => [...prev, ...hand]);
   setSelectedCards([]);
 };
