@@ -33,6 +33,7 @@ const BirdCard = ({ bird, starting }) => {
   if (color === "brown") powerColor = "bg-brown";
 
   const [startingBirds, setStartingBirds] = useAtom(startingBirdsAtom);
+
   const [birdHand, setBirdHand] = useAtom(birdHandAtom);
 
   const birdSelection = () => {

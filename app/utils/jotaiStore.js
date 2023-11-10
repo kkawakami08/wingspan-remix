@@ -20,8 +20,11 @@ export const bonusDeckAtom = atom(bonusCardDeck);
 export const birdHandAtom = atom(playerBirdHand);
 export const bonusHandAtom = atom(playerBonusHand);
 
-//selecting starting hand
+//selecting starting hand/tokens
 export const startingBirdsAtom = atom([]);
+export const startingBonusAtom = atom([]);
+export const startingFoodAtom = atom([]);
+export const disableSelectionAtom = atom(true);
 
 //VP
 export const bonusVPAtom = atom(0);

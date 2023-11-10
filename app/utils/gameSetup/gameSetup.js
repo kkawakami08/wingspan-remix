@@ -78,8 +78,6 @@ export const deselectCard = (
 };
 
 export const saveSelection = (selectedCards, setHand, setSelectedCards) => {
-  console.log("Saving selection");
-
   setHand(selectedCards);
   setSelectedCards([]);
 };

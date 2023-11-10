@@ -6,51 +6,80 @@ import {
   birdFeederAtom,
   playerFoodSupplyAtom,
   startingBirdsAtom,
+  startingBonusAtom,
+  startingFoodAtom,
+  disableSelectionAtom,
 } from "../utils/jotaiStore";
 import { BirdCard, BonusCard, FoodToken, BirdFeeder } from "./gameComponents";
-import { saveSelection } from "../utils/gameSetup/gameSetup";
+import { enableSelection, saveSelection } from "../utils/gameSetup/gameSetup";
 
 const Test = () => {
   const [birdHand, setBirdHand] = useAtom(birdHandAtom);
-  const [bonusHand] = useAtom(bonusHandAtom);
+  const [bonusHand, setBonusHand] = useAtom(bonusHandAtom);
   const [birdFeeder] = useAtom(birdFeederAtom);
   const [playerFoodSupply] = useAtom(playerFoodSupplyAtom);
   const [startingBirds, setStartingBirds] = useAtom(startingBirdsAtom);
+  const [startingBonus, setStartingBonus] = useAtom(startingBonusAtom);
+  const [startingFood, setStartingFood] = useAtom(startingFoodAtom);
+  const [disableSelection, setDisableSelection] = useAtom(disableSelectionAtom);
+
+  let displaySubmit =
+    (startingBirds.length > 0) & (startingFood.length > 0) &&
+    startingBirds.length === startingFood.length &&
+    startingBonus.length === 1;
 
   const birdHandContent = birdHand.map((bird) => (
     <BirdCard bird={bird} key={bird.common_name} starting={false} />
   ));
-  const startingBirdsContent = startingBirds.map((bird) => (
+  const startingBirdHandContent = startingBirds.map((bird) => (
     <BirdCard bird={bird} key={bird.common_name} starting={true} />
+  ));
+  const startingBonusContent = startingBonus.map((bonus) => (
+    <BonusCard bonus={bonus} key={bonus.name} starting={true} />
   ));
 
   const bonusHandContent = bonusHand.map((bonus) => (
-    <BonusCard bonus={bonus} key={bonus.name} />
+    <BonusCard bonus={bonus} key={bonus.name} starting={false} />
   ));
 
   const playerFoodSupplyContent = playerFoodSupply.map((item) => (
-    <FoodToken foodType={item} key={item.id} />
+    <FoodToken foodType={item} key={item.id} starting={false} />
   ));
+
+  const startingFoodSupplyContent = startingFood.map((item) => (
+    <FoodToken foodType={item} key={item.id} starting={true} />
+  ));
+
+  const submitHand = () => {
+    saveSelection(startingBirds, setBirdHand, setStartingBirds);
+    setStartingFood([]);
+    saveSelection(startingBonus, setBonusHand, setStartingBonus);
+  };
 
   return (
     <div>
-      <p>Bird Hand</p>
+      <p>Dealt Bird Cards: </p>
       <div className="flex gap-3">{birdHandContent}</div>
-      <p>Selected Birds</p>
-      <div className="flex gap-3">{startingBirdsContent}</div>
-      <button
-        onClick={() =>
-          saveSelection(startingBirds, setBirdHand, setStartingBirds)
-        }
-      >
-        Select these birds!
-      </button>
-      {/* <p>Bonus Hand</p>
+      <p>Selected Bird Cards: </p>
+      <p>Need to spend {startingBirds.length} food</p>
+      <div className="flex gap-3">{startingBirdHandContent}</div>
+      <p>Player food supply: </p>
+      <div className="flex gap-3">{playerFoodSupplyContent}</div>
+      <p>Selected food to discard</p>
+      <p>discard {startingFood.length} food</p>
+      <div className="flex gap-3">{startingFoodSupplyContent}</div>
+      <p>Dealt Bonus Cards: </p>
       <div className="flex gap-3">{bonusHandContent}</div>
-      <BirdFeeder />
+      <p>Selected Bonus Cards: </p>
 
-      <p>Player Food Supply</p>
-      <div className="flex gap-3 flex-wrap">{playerFoodSupplyContent}</div> */}
+      <div className="flex gap-3">{startingBonusContent}</div>
+      <button
+        className="bg-emerald-400 disabled:bg-red-600"
+        disabled={!displaySubmit}
+        onClick={submitHand}
+      >
+        Submit
+      </button>
     </div>
   );
 };

@@ -1,10 +1,36 @@
-import React from "react";
+import { useAtom } from "jotai";
+import { bonusHandAtom, startingBonusAtom } from "../../utils/jotaiStore";
+import { selectCard, deselectCard } from "../../utils/gameSetup/gameSetup";
 
-const BonusCard = ({ bonus }) => {
+const BonusCard = ({ bonus, starting }) => {
+  const { name, automa, condition, explanation, card_percentage } = bonus;
+  const {
+    description,
+    low_range_bird_count,
+    low_range_points,
+    high_range_bird_count,
+    high_range_points,
+    individual_points,
+  } = bonus.vp;
+
+  const [startingBonus, setStartingBonus] = useAtom(startingBonusAtom);
+  const [bonusHand, setBonusHand] = useAtom(bonusHandAtom);
+
+  const bonusSelection = () => {
+    if (starting) {
+      deselectCard(startingBonus, "name", name, setBonusHand, setStartingBonus);
+    } else {
+      selectCard(bonusHand, "name", name, setBonusHand, setStartingBonus);
+    }
+  };
   return (
-    <div className="border-2 border-slate-900 rounded-lg text-xs p-3 bg-lime-300">
-      <p className="text-lg">{bonus.name}</p>
-      <p className="">{bonus.vp.description}</p>
+    <div
+      className="border-2 border-slate-900 rounded-lg text-xs p-3 bg-orange-200"
+      onClick={bonusSelection}
+    >
+      {starting && <p>SELECTED!</p>}
+      <p className="text-lg">{name}</p>
+      <p>Condition: {condition}</p>
     </div>
   );
 };
