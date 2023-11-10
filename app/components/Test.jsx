@@ -30,7 +30,7 @@ const Test = () => {
   const playerFoodSupplyContent = playerFoodSupply.map((item) => (
     <FoodToken foodType={item} key={item.id} />
   ));
-  console.log("from test", startingBirds);
+  // console.log("from test", startingBirds);
   return (
     <div>
       <p>Bird Hand</p>

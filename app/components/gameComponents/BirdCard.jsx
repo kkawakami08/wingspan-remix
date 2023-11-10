@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { useAtom, atom } from "jotai";
+import { useAtom } from "jotai";
 import { birdHandAtom, startingBirdsAtom } from "../../utils/jotaiStore";
+import { selectCard, deselectCard } from "../../utils/gameSetup/gameSetup";
 
 const BirdCard = ({ bird, starting }) => {
   const {
@@ -34,20 +34,7 @@ const BirdCard = ({ bird, starting }) => {
 
   const [startingBirds, setStartingBirds] = useAtom(startingBirdsAtom);
   const [birdHand, setBirdHand] = useAtom(birdHandAtom);
-  //unique to card
-  // const [isSelectedBird, setIsSelectedBird] = useState(false);
 
-  const selectCard = () => {
-    const initialHand = birdHand;
-    const selectedCardIndex = initialHand
-      .map((bird) => bird.common_name)
-      .indexOf(common_name);
-    const [selectedBird] = initialHand.splice(selectedCardIndex, 1);
-
-    setStartingBirds((prev) => [...prev, selectedBird]);
-    setBirdHand(initialHand);
-    console.log("from func", startingBirds);
-  };
   const deselectCard = () => {
     const initialHand = startingBirds;
     const selectedCardIndex = initialHand
@@ -61,13 +48,24 @@ const BirdCard = ({ bird, starting }) => {
 
   const birdSelection = () => {
     if (starting) {
-      deselectCard();
+      deselectCard(
+        startingBirds,
+        "common_name",
+        common_name,
+        setBirdHand,
+        setStartingBirds
+      );
     } else {
-      selectCard();
+      selectCard(
+        birdHand,
+        "common_name",
+        common_name,
+        setBirdHand,
+        setStartingBirds
+      );
     }
   };
 
-  console.log("Starting?", common_name, starting);
   return (
     <div
       className="border-2 border-slate-900 rounded-lg text-xs p-3 bg-orange-200"
