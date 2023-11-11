@@ -4,10 +4,10 @@ import { GameLayout, Setup } from "./game";
 const Wingspan = () => {
   const [isSetup, setIsSetup] = useState(true);
   return (
-    // <div>{isSetup ? <Setup setIsSetup={setIsSetup} /> : <GameLayout />}</div>
-    <div>
-      <GameLayout />
-    </div>
+    <div>{isSetup ? <Setup setIsSetup={setIsSetup} /> : <GameLayout />}</div>
+    // <div>
+    //   <GameLayout />
+    // </div>
   );
 };
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { useAtom } from "jotai";
-import { goalTilesAtom } from "../../utils/jotaiStore";
+import { goalTilesAtom } from "../../../utils/jotaiStore";
 
 const GoalBoard = () => {
   const [goalTiles] = useAtom(goalTilesAtom);
