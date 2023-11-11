@@ -31,7 +31,7 @@ const FoodToken = ({ foodType, starting }) => {
 
   return (
     <div
-      className="border-2 border-slate-900 rounded-lg text-xs p-3 bg-orange-200"
+      className="border-2 border-slate-900 rounded-lg text-xs p-3 bg-pink-200"
       onClick={foodSelection}
     >
       {starting && <p>SELECTED!</p>}

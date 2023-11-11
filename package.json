@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "remix build",
-    "dev": "concurrently \"npm run dev:css\"  \"PORT=3000 remix dev\" ",
+    "dev": "concurrently \"npm run dev:css\"  \"PORT=4000 remix dev\" ",
     "dev:css": "tailwindcss -i ./styles/tailwind.css -o ./app/styles/tailwind.css -w",
     "start": "remix-serve ./build/index.js"
   },

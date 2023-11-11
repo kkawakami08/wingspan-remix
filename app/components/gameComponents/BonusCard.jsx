@@ -25,7 +25,7 @@ const BonusCard = ({ bonus, starting }) => {
   };
   return (
     <div
-      className="border-2 border-slate-900 rounded-lg text-xs p-3 bg-orange-200"
+      className="border-2 border-slate-900 rounded-lg text-xs p-3 bg-cyan-200 w-56"
       onClick={bonusSelection}
     >
       {starting && <p>SELECTED!</p>}
