@@ -1,4 +1,4 @@
-import Test from "../components/Test";
+import Wingspan from "../components/Wingspan";
 import { ClientOnly } from "../components/hydration/ClientOnly";
 import { InitialLoad } from "../components/hydration/Fallback";
 import { Provider } from "jotai";
@@ -11,7 +11,7 @@ export default function Index() {
   return (
     <ClientOnly fallback={<InitialLoad />}>
       <Provider>
-        <Test />
+        <Wingspan />
       </Provider>
     </ClientOnly>
   );

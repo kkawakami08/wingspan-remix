@@ -7,6 +7,7 @@ import {
   birdCardDeck,
   dealCards,
   initializePlayerFoodSupply,
+  selectGoalTiles,
 } from "./gameSetup/gameSetup";
 import { rollBirdFeeder } from "./gameFunctions/birdFeederFunctions";
 
@@ -17,19 +18,19 @@ export const bonusDeckAtom = atom(bonusCardDeck);
 export const birdHandAtom = atom(playerBirdHand);
 export const bonusHandAtom = atom(playerBonusHand);
 
+//initial food
+const initialRoll = rollBirdFeeder();
+export const birdFeederAtom = atom(initialRoll);
+export const playerFoodSupplyAtom = atom(initializePlayerFoodSupply());
+
 //selecting starting hand/tokens
 export const startingBirdsAtom = atom([]);
 export const startingBonusAtom = atom([]);
 export const startingFoodAtom = atom([]);
 
-//VP
-export const bonusVPAtom = atom(0);
-export const birdVPAtom = atom(0);
+//goal tiles
 
-//initial food
-const initialRoll = rollBirdFeeder();
-export const birdFeederAtom = atom(initialRoll);
-export const playerFoodSupplyAtom = atom(initializePlayerFoodSupply());
+export const goalTilesAtom = atom(selectGoalTiles());
 
 //roll dice boolean
 export const disableRollingAtom = atom(false);
@@ -37,3 +38,7 @@ export const disableRollingAtom = atom(false);
 //discard piles
 export const discardBonusCardsAtom = atom([]);
 export const discardBirdCardsAtom = atom([]);
+
+//VP
+export const bonusVPAtom = atom(0);
+export const birdVPAtom = atom(0);

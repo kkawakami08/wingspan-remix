@@ -1,5 +1,6 @@
 import { bonusCards } from "../../data/bonusCards";
 import { birdCards } from "../../data/birdCards";
+import { endOfRoundGoals } from "../../data/endOfRoundGoals";
 import { nanoid } from "nanoid";
 
 //cards
@@ -52,6 +53,7 @@ export const initializePlayerFoodSupply = () => {
   return feedSupply;
 };
 
+//selecting initial cards
 export const selectCard = (hand, key, value, setHand, setStartingHand) => {
   const initialHand = hand;
 
@@ -87,4 +89,23 @@ export const saveSelection = (
   setHand(selectedCards);
   setDiscardCards((prev) => [...prev, ...hand]);
   setSelectedCards([]);
+};
+
+//goal tiles
+export const selectGoalTiles = () => {
+  let goalTiles = endOfRoundGoals;
+  let selectedTiles = [];
+  for (let i = 0; i < 4; i++) {
+    const randomNum = Math.floor(Math.random() * (11 - 1) + 1);
+    const randomIndex = Math.floor(Math.random() * goalTiles.length);
+    const tile = goalTiles.splice(randomIndex, 1)[0];
+
+    if (randomNum % 2 === 0) {
+      selectedTiles.push(tile[0]);
+    } else {
+      selectedTiles.push(tile[1]);
+    }
+  }
+
+  return selectedTiles;
 };
