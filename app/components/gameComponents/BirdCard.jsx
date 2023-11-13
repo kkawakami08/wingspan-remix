@@ -73,7 +73,6 @@ const BirdCard = ({ bird, starting, tray }) => {
           setStartingBirds,
           setBirdTray
         );
-        console.log(birdTray);
       } else if (!tray && starting) {
         selectCard(
           startingBirds,
@@ -82,11 +81,9 @@ const BirdCard = ({ bird, starting, tray }) => {
           setStartingBirds,
           setBirdTray
         );
-        console.log(birdTray);
       }
     }
   };
-  // console.log(birdTray);
 
   return (
     <div
