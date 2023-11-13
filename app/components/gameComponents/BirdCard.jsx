@@ -1,13 +1,13 @@
 import { useAtom } from "jotai";
 import {
   birdHandAtom,
-  startingBirdsAtom,
+  selectedBirdsAtom,
   birdTrayAtom,
   isSetupAtom,
 } from "../../utils/jotaiStore";
 import { selectCard, deselectCard } from "../../utils/gameSetup/gameSetup";
 
-const BirdCard = ({ bird, starting, tray }) => {
+const BirdCard = ({ bird, selected, tray }) => {
   const [isSetup] = useAtom(isSetupAtom);
   const {
     habitat,
@@ -38,21 +38,21 @@ const BirdCard = ({ bird, starting, tray }) => {
   if (color === "pink") powerColor = "bg-power_pink";
   if (color === "brown") powerColor = "bg-brown";
 
-  const [startingBirds, setStartingBirds] = useAtom(startingBirdsAtom);
+  const [selectedBirds, setSelectedBirds] = useAtom(selectedBirdsAtom);
   const [birdTray, setBirdTray] = useAtom(birdTrayAtom);
 
   const [birdHand, setBirdHand] = useAtom(birdHandAtom);
 
   const birdSelection = () => {
     if (isSetup) {
-      //starting bird functionality
-      if (starting) {
+      //selected bird functionality
+      if (selected) {
         deselectCard(
-          startingBirds,
+          selectedBirds,
           "common_name",
           common_name,
           setBirdHand,
-          setStartingBirds
+          setSelectedBirds
         );
       } else {
         selectCard(
@@ -60,25 +60,25 @@ const BirdCard = ({ bird, starting, tray }) => {
           "common_name",
           common_name,
           setBirdHand,
-          setStartingBirds
+          setSelectedBirds
         );
       }
     } else {
       //bird tray functionality
-      if (tray && starting) {
+      if (tray && selected) {
         deselectCard(
           birdTray,
           "common_name",
           common_name,
-          setStartingBirds,
+          setSelectedBirds,
           setBirdTray
         );
-      } else if (!tray && starting) {
+      } else if (!tray && selected) {
         selectCard(
-          startingBirds,
+          selectedBirds,
           "common_name",
           common_name,
-          setStartingBirds,
+          setSelectedBirds,
           setBirdTray
         );
       }
@@ -90,7 +90,7 @@ const BirdCard = ({ bird, starting, tray }) => {
       className="border-2 border-slate-900 rounded-lg text-xs p-3 bg-emerald-200 w-52"
       onClick={birdSelection}
     >
-      {starting && <p>SELECTED!</p>}
+      {selected && <p>SELECTED!</p>}
       <p className="text-lg">{common_name}</p>
       <p className={powerColor}>Power: {description}</p>
 

@@ -2,7 +2,7 @@ import { useAtom } from "jotai";
 import {
   birdHandAtom,
   birdTrayAtom,
-  startingBirdsAtom,
+  selectedBirdsAtom,
   birdDeckAtom,
 } from "../../../utils/jotaiStore";
 import { BirdCard } from "../../gameComponents";
@@ -13,17 +13,17 @@ import {
 
 const BirdTray = () => {
   const [birdTray, setBirdTray] = useAtom(birdTrayAtom);
-  //   console.log(birdTray);
-  const [startingBirds, setStartingBirds] = useAtom(startingBirdsAtom);
-  const [birdHand, setBirdHand] = useAtom(birdHandAtom);
+
+  const [selectedBirds, setSelectedBirds] = useAtom(selectedBirdsAtom);
+  const [, setBirdHand] = useAtom(birdHandAtom);
   const [birdDeck, setBirdDeck] = useAtom(birdDeckAtom);
 
   const birdTrayContent = birdTray.map((bird) => (
-    <BirdCard bird={bird} key={bird.common_name} starting={true} tray={true} />
+    <BirdCard bird={bird} key={bird.common_name} selected={true} tray={true} />
   ));
 
-  const selectedBirdsContent = startingBirds.map((bird) => (
-    <BirdCard bird={bird} key={bird.common_name} starting={true} />
+  const selectedBirdsContent = selectedBirds.map((bird) => (
+    <BirdCard bird={bird} key={bird.common_name} selected={true} />
   ));
 
   return (
@@ -42,7 +42,7 @@ const BirdTray = () => {
       <div className="flex gap-3">{selectedBirdsContent}</div>
       <button
         onClick={() =>
-          saveTraySelection(setBirdHand, setStartingBirds, startingBirds)
+          saveTraySelection(setBirdHand, setSelectedBirds, selectedBirds)
         }
         className="bg-emerald-800 rounded-lg p-3 text-white disabled:bg-emerald-200"
       >

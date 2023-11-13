@@ -26,7 +26,8 @@ export const birdFeederAtom = atom(initialRoll);
 export const playerFoodSupplyAtom = atom(initializePlayerFoodSupply());
 
 //selecting starting hand/tokens
-export const startingBirdsAtom = atom([]);
+export const selectedBirdsAtom = atom([]);
+//testing= false - set to true on final
 export const isSetupAtom = atom(true);
 export const startingBonusAtom = atom([]);
 export const startingFoodAtom = atom([]);

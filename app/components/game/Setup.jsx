@@ -4,7 +4,7 @@ import {
   birdHandAtom,
   bonusHandAtom,
   playerFoodSupplyAtom,
-  startingBirdsAtom,
+  selectedBirdsAtom,
   startingBonusAtom,
   startingFoodAtom,
   discardBirdCardsAtom,
@@ -21,22 +21,22 @@ const Setup = () => {
   const [bonusHand, setBonusHand] = useAtom(bonusHandAtom);
 
   const [playerFoodSupply] = useAtom(playerFoodSupplyAtom);
-  const [startingBirds, setStartingBirds] = useAtom(startingBirdsAtom);
+  const [selectedBirds, setSelectedBirds] = useAtom(selectedBirdsAtom);
   const [startingBonus, setStartingBonus] = useAtom(startingBonusAtom);
   const [startingFood, setStartingFood] = useAtom(startingFoodAtom);
-  const [birdDiscard, setBirdDiscard] = useAtom(discardBirdCardsAtom);
-  const [bonusDiscard, setBonusDiscard] = useAtom(discardBonusCardsAtom);
+  const [, setBirdDiscard] = useAtom(discardBirdCardsAtom);
+  const [, setBonusDiscard] = useAtom(discardBonusCardsAtom);
 
   let disableButton =
-    (startingBirds.length > 0) & (startingFood.length > 0) &&
-    startingBirds.length === startingFood.length &&
+    (selectedBirds.length > 0) & (startingFood.length > 0) &&
+    selectedBirds.length === startingFood.length &&
     startingBonus.length === 1;
 
   const birdHandContent = birdHand.map((bird) => (
-    <BirdCard bird={bird} key={bird.common_name} starting={false} />
+    <BirdCard bird={bird} key={bird.common_name} selected={false} />
   ));
-  const startingBirdHandContent = startingBirds.map((bird) => (
-    <BirdCard bird={bird} key={bird.common_name} starting={true} />
+  const selectedBirdHandContent = selectedBirds.map((bird) => (
+    <BirdCard bird={bird} key={bird.common_name} selected={true} />
   ));
   const startingBonusContent = startingBonus.map((bonus) => (
     <BonusCard bonus={bonus} key={bonus.name} starting={true} />
@@ -56,10 +56,10 @@ const Setup = () => {
 
   const submitHand = () => {
     saveSelection(
-      startingBirds,
+      selectedBirds,
       birdHand,
       setBirdHand,
-      setStartingBirds,
+      setSelectedBirds,
       setBirdDiscard
     );
     setStartingFood([]);
@@ -83,7 +83,7 @@ const Setup = () => {
         </div>
         <div className="flex flex-col items-center gap-5 w-1/2">
           <p className="text-lg font-bold">Selected Birds</p>
-          <div className="flex gap-3 flex-wrap">{startingBirdHandContent}</div>
+          <div className="flex gap-3 flex-wrap">{selectedBirdHandContent}</div>
         </div>
       </div>
 
@@ -102,7 +102,7 @@ const Setup = () => {
           <div className="flex flex-col text-center">
             <p className="text-lg font-bold">Food Supply</p>
             <p className="text-lg">
-              Discard {startingBirds.length} Food Tokens
+              Discard {selectedBirds.length} Food Tokens
             </p>
           </div>
           <div className="flex gap-3 flex-wrap">{playerFoodSupplyContent}</div>
