@@ -1,14 +1,15 @@
 import React from "react";
-import { GoalBoard, BirdDeck, BonusDeck } from "./board";
+import { GoalBoard, BirdDeck, BonusDeck, BirdTray } from "./board";
 import { PlayerBoard } from "./player";
 
 const GameLayout = () => {
   return (
     <div>
       <p>Game Layout</p>
-      <BirdDeck />
+      {/* <BirdDeck /> */}
+      <BirdTray />
       <PlayerBoard />
-      <BonusDeck />
+      {/* <BonusDeck /> */}
     </div>
   );
 };

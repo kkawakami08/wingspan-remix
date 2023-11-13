@@ -6,8 +6,8 @@ const PlayerBoard = () => {
     <div>
       <p>PlayerBoard</p>
       <PlayerBirdHand />
-      <PlayerBonusHand />
-      <PlayerFoodSupply />
+      {/* <PlayerBonusHand /> */}
+      {/* <PlayerFoodSupply /> */}
     </div>
   );
 };

@@ -6,6 +6,7 @@ import { nanoid } from "nanoid";
 //cards
 export let playerBirdHand = [];
 export let playerBonusHand = [];
+export let birdTray = [];
 
 const shuffle = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
@@ -21,6 +22,9 @@ export const dealCards = () => {
   }
   for (let i = 0; i < 5; i++) {
     playerBirdHand.push(birdCardDeck.pop());
+  }
+  for (let i = 0; i < 3; i++) {
+    birdTray.push(birdCardDeck.pop());
   }
 };
 

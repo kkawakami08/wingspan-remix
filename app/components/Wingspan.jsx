@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { GameLayout, Setup } from "./game";
+import { useAtom } from "jotai";
+import { isSetupAtom } from "../utils/jotaiStore";
 
 const Wingspan = () => {
-  const [isSetup, setIsSetup] = useState(true);
+  const [isSetup] = useAtom(isSetupAtom);
   return (
-    <div>{isSetup ? <Setup setIsSetup={setIsSetup} /> : <GameLayout />}</div>
+    <div>{isSetup ? <Setup /> : <GameLayout />}</div>
+
     // <div>
     //   <GameLayout />
     // </div>

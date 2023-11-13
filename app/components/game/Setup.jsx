@@ -9,11 +9,14 @@ import {
   startingFoodAtom,
   discardBirdCardsAtom,
   discardBonusCardsAtom,
+  isSetupAtom,
 } from "../../utils/jotaiStore";
 import { BirdCard, BonusCard, FoodToken } from "../gameComponents";
 import { saveSelection } from "../../utils/gameSetup/gameSetup";
 
-const Setup = ({ setIsSetup }) => {
+const Setup = () => {
+  const [, setIsSetup] = useAtom(isSetupAtom);
+
   const [birdHand, setBirdHand] = useAtom(birdHandAtom);
   const [bonusHand, setBonusHand] = useAtom(bonusHandAtom);
 

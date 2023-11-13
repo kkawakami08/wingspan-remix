@@ -1,8 +1,14 @@
 import { useAtom } from "jotai";
-import { birdHandAtom, startingBirdsAtom } from "../../utils/jotaiStore";
+import {
+  birdHandAtom,
+  startingBirdsAtom,
+  birdTrayAtom,
+  isSetupAtom,
+} from "../../utils/jotaiStore";
 import { selectCard, deselectCard } from "../../utils/gameSetup/gameSetup";
 
-const BirdCard = ({ bird, starting }) => {
+const BirdCard = ({ bird, starting, tray }) => {
+  const [isSetup] = useAtom(isSetupAtom);
   const {
     habitat,
     common_name,
@@ -33,28 +39,54 @@ const BirdCard = ({ bird, starting }) => {
   if (color === "brown") powerColor = "bg-brown";
 
   const [startingBirds, setStartingBirds] = useAtom(startingBirdsAtom);
+  const [birdTray, setBirdTray] = useAtom(birdTrayAtom);
 
   const [birdHand, setBirdHand] = useAtom(birdHandAtom);
 
   const birdSelection = () => {
-    if (starting) {
-      deselectCard(
-        startingBirds,
-        "common_name",
-        common_name,
-        setBirdHand,
-        setStartingBirds
-      );
+    if (isSetup) {
+      //starting bird functionality
+      if (starting) {
+        deselectCard(
+          startingBirds,
+          "common_name",
+          common_name,
+          setBirdHand,
+          setStartingBirds
+        );
+      } else {
+        selectCard(
+          birdHand,
+          "common_name",
+          common_name,
+          setBirdHand,
+          setStartingBirds
+        );
+      }
     } else {
-      selectCard(
-        birdHand,
-        "common_name",
-        common_name,
-        setBirdHand,
-        setStartingBirds
-      );
+      //bird tray functionality
+      if (tray && starting) {
+        deselectCard(
+          birdTray,
+          "common_name",
+          common_name,
+          setStartingBirds,
+          setBirdTray
+        );
+        console.log(birdTray);
+      } else if (!tray && starting) {
+        selectCard(
+          startingBirds,
+          "common_name",
+          common_name,
+          setStartingBirds,
+          setBirdTray
+        );
+        console.log(birdTray);
+      }
     }
   };
+  // console.log(birdTray);
 
   return (
     <div
