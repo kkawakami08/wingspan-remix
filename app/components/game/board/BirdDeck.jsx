@@ -16,16 +16,24 @@ const BirdDeck = () => {
   let lastDiscard = birdDiscard.length - 1;
 
   return (
-    <div>
-      <p>Bird Deck</p>
-      <button
-        className="bg-cyan-800 rounded-lg p-3 text-white"
-        onClick={() => drawCard(birdDeck, setBirdHand, setBirdDeck)}
-      >
-        Draw Cards
-      </button>
-      <p>Bird Discard</p>
-      <BirdCard bird={birdDiscard[lastDiscard]} />
+    <div className="flex gap-5">
+      <div>
+        <p>Bird Deck</p>
+        <button
+          className="bg-cyan-800 rounded-lg p-3 text-white"
+          onClick={() => drawCard(birdDeck, setBirdHand, setBirdDeck)}
+        >
+          Draw Cards
+        </button>
+      </div>
+      <div>
+        <p>Bird Discard</p>
+        {birdDiscard.length > 0 ? (
+          <BirdCard bird={birdDiscard[lastDiscard]} />
+        ) : (
+          <p>Empty Discard</p>
+        )}
+      </div>
     </div>
   );
 };

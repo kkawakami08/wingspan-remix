@@ -1,6 +1,7 @@
 import { useAtom } from "jotai";
 import { bonusHandAtom, startingBonusAtom } from "../../utils/jotaiStore";
-import { selectCard, deselectCard } from "../../utils/gameSetup/gameSetup";
+
+import { cardSelection } from "../../utils/gameFunctions/generalFunctions";
 
 const BonusCard = ({ bonus, starting }) => {
   const { name, automa, condition, explanation, card_percentage } = bonus;
@@ -18,9 +19,17 @@ const BonusCard = ({ bonus, starting }) => {
 
   const bonusSelection = () => {
     if (starting) {
-      deselectCard(startingBonus, "name", name, setBonusHand, setStartingBonus);
+      // deselectCard(startingBonus, "name", name, setBonusHand, setStartingBonus);
+      cardSelection(
+        startingBonus,
+        "name",
+        name,
+        setBonusHand,
+        setStartingBonus
+      );
     } else {
-      selectCard(bonusHand, "name", name, setBonusHand, setStartingBonus);
+      // selectCard(bonusHand, "name", name, setBonusHand, setStartingBonus);
+      cardSelection(bonusHand, "name", name, setStartingBonus, setBonusHand);
     }
   };
   return (

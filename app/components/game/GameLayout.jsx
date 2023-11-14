@@ -1,15 +1,19 @@
 import React from "react";
-import { GoalBoard, BirdDeck, BonusDeck, BirdTray } from "./board";
+import { GoalBoard, BirdDeck, BonusDeck, BirdTray, BirdFeeder } from "./board";
+
 import { PlayerBoard } from "./player";
 
 const GameLayout = () => {
   return (
     <div>
-      <p>Game Layout</p>
-      {/* <BirdDeck /> */}
+      <div className="flex gap-10">
+        <BirdDeck />
+        <BonusDeck />
+      </div>
+
       <BirdTray />
+      <BirdFeeder />
       <PlayerBoard />
-      {/* <BonusDeck /> */}
     </div>
   );
 };

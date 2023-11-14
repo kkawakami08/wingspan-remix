@@ -6,7 +6,7 @@ import {
   playerFoodSupplyAtom,
   selectedBirdsAtom,
   startingBonusAtom,
-  startingFoodAtom,
+  selectedFoodAtom,
   discardBirdCardsAtom,
   discardBonusCardsAtom,
   isSetupAtom,
@@ -23,13 +23,13 @@ const Setup = () => {
   const [playerFoodSupply] = useAtom(playerFoodSupplyAtom);
   const [selectedBirds, setSelectedBirds] = useAtom(selectedBirdsAtom);
   const [startingBonus, setStartingBonus] = useAtom(startingBonusAtom);
-  const [startingFood, setStartingFood] = useAtom(startingFoodAtom);
+  const [selectedFood, setSelectedFood] = useAtom(selectedFoodAtom);
   const [, setBirdDiscard] = useAtom(discardBirdCardsAtom);
   const [, setBonusDiscard] = useAtom(discardBonusCardsAtom);
 
   let disableButton =
-    (selectedBirds.length > 0) & (startingFood.length > 0) &&
-    selectedBirds.length === startingFood.length &&
+    (selectedBirds.length > 0) & (selectedFood.length > 0) &&
+    selectedBirds.length === selectedFood.length &&
     startingBonus.length === 1;
 
   const birdHandContent = birdHand.map((bird) => (
@@ -47,11 +47,11 @@ const Setup = () => {
   ));
 
   const playerFoodSupplyContent = playerFoodSupply.map((item) => (
-    <FoodToken foodType={item} key={item.id} starting={false} />
+    <FoodToken foodType={item} key={item.id} selected={false} />
   ));
 
-  const startingFoodSupplyContent = startingFood.map((item) => (
-    <FoodToken foodType={item} key={item.id} starting={true} />
+  const selectedFoodSupplyContent = selectedFood.map((item) => (
+    <FoodToken foodType={item} key={item.id} selected={true} />
   ));
 
   const submitHand = () => {
@@ -62,7 +62,7 @@ const Setup = () => {
       setSelectedBirds,
       setBirdDiscard
     );
-    setStartingFood([]);
+    setSelectedFood([]);
     saveSelection(
       startingBonus,
       bonusHand,
@@ -110,7 +110,7 @@ const Setup = () => {
         <div className="flex flex-col items-center gap-5 w-1/2">
           <p className="text-lg font-bold">Food Tokens to discard</p>
           <div className="flex gap-3 flex-wrap">
-            {startingFoodSupplyContent}
+            {selectedFoodSupplyContent}
           </div>
         </div>
       </div>

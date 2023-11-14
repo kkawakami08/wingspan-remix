@@ -31,22 +31,6 @@ export const rollBirdFeeder = () => {
   return birdFeederSupply;
 };
 
-export const takeDie = (
-  birdFeederSupply,
-  setPlayerFoodSupply,
-  diceId,
-  setDisableRolling
-) => {
-  let initialSupply = birdFeederSupply;
-
-  const index = initialSupply.map((e) => e.id).indexOf(diceId);
-  const [die] = initialSupply.splice(index, 1);
-
-  setPlayerFoodSupply((prev) => [...prev, die]);
-  // console.log("birdfeeder: ", initialSupply);
-  enableRolling(initialSupply, setDisableRolling);
-};
-
 export const enableRolling = (birdFeederSupply, setDisableRolling) => {
   if (birdFeederSupply.every((die) => die.type === birdFeederSupply[0].type)) {
     setDisableRolling(true);

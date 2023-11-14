@@ -58,30 +58,6 @@ export const initializePlayerFoodSupply = () => {
 };
 
 //selecting initial cards
-export const selectCard = (hand, key, value, setHand, setStartingHand) => {
-  const initialHand = hand;
-
-  const selectedCardIndex = initialHand.map((card) => card[key]).indexOf(value);
-
-  const [selectedCard] = initialHand.splice(selectedCardIndex, 1);
-
-  setStartingHand((prev) => [...prev, selectedCard]);
-  setHand(initialHand);
-};
-export const deselectCard = (
-  startingHand,
-  key,
-  value,
-  setHand,
-  setStartingHand
-) => {
-  const initialHand = startingHand;
-  const selectedCardIndex = initialHand.map((card) => card[key]).indexOf(value);
-  const [selectedCard] = initialHand.splice(selectedCardIndex, 1);
-
-  setHand((prev) => [...prev, selectedCard]);
-  setStartingHand(initialHand);
-};
 
 export const saveSelection = (
   selectedCards,

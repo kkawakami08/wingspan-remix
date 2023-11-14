@@ -1,40 +1,41 @@
 import { useAtom } from "jotai";
-import { playerFoodSupplyAtom, startingFoodAtom } from "../../utils/jotaiStore";
-import { selectCard, deselectCard } from "../../utils/gameSetup/gameSetup";
+import {
+  playerFoodSupplyAtom,
+  selectedFoodAtom,
+  isSetupAtom,
+} from "../../utils/jotaiStore";
+import { foodSelection } from "../../utils/gameFunctions/generalFunctions";
 
-const FoodToken = ({ foodType, starting }) => {
+const FoodToken = ({ foodType, selected }) => {
+  const [isSetup] = useAtom(isSetupAtom);
   const { type, id } = foodType;
 
-  const [startingFood, setStartingFood] = useAtom(startingFoodAtom);
+  const [selectedFood, setSelectedFood] = useAtom(selectedFoodAtom);
 
   const [playerFoodSupply, setPlayerFoodSupply] = useAtom(playerFoodSupplyAtom);
 
-  const foodSelection = () => {
-    if (starting) {
-      deselectCard(
-        startingFood,
-        "id",
-        id,
-        setPlayerFoodSupply,
-        setStartingFood
-      );
+  const selectFood = () => {
+    if (isSetup) {
+      if (selected) {
+        foodSelection(selectedFood, setPlayerFoodSupply, id);
+      } else {
+        foodSelection(playerFoodSupply, setSelectedFood, id);
+      }
     } else {
-      selectCard(
-        playerFoodSupply,
-        "id",
-        id,
-        setPlayerFoodSupply,
-        setStartingFood
-      );
+      if (selected) {
+        foodSelection(selectedFood, setPlayerFoodSupply, id);
+      } else {
+        foodSelection(playerFoodSupply, setSelectedFood, id);
+      }
     }
   };
 
   return (
     <div
       className="border-2 border-slate-900 rounded-lg text-xs p-3 bg-pink-200"
-      onClick={foodSelection}
+      onClick={selectFood}
     >
-      {starting && <p>SELECTED!</p>}
+      {selected && <p>SELECTED!</p>}
       <p className="text-lg">{type}</p>
     </div>
   );

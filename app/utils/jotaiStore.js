@@ -25,12 +25,14 @@ const initialRoll = rollBirdFeeder();
 export const birdFeederAtom = atom(initialRoll);
 export const playerFoodSupplyAtom = atom(initializePlayerFoodSupply());
 
-//selecting starting hand/tokens
-export const selectedBirdsAtom = atom([]);
 //testing= false - set to true on final
-export const isSetupAtom = atom(true);
+export const isSetupAtom = atom(false);
+//
+
+//selecting cards/tokens
+export const selectedBirdsAtom = atom([]);
 export const startingBonusAtom = atom([]);
-export const startingFoodAtom = atom([]);
+export const selectedFoodAtom = atom([]);
 
 //goal tiles
 

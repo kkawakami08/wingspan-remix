@@ -5,7 +5,8 @@ import {
   birdTrayAtom,
   isSetupAtom,
 } from "../../utils/jotaiStore";
-import { selectCard, deselectCard } from "../../utils/gameSetup/gameSetup";
+
+import { cardSelection } from "../../utils/gameFunctions/generalFunctions";
 
 const BirdCard = ({ bird, selected, tray }) => {
   const [isSetup] = useAtom(isSetupAtom);
@@ -35,8 +36,8 @@ const BirdCard = ({ bird, selected, tray }) => {
   } = bird.power.variable;
 
   let powerColor = "";
-  if (color === "pink") powerColor = "bg-power_pink";
-  if (color === "brown") powerColor = "bg-brown";
+  if (color === "pink") powerColor = "bg-power_pink p-2";
+  if (color === "brown") powerColor = "bg-brown p-2";
 
   const [selectedBirds, setSelectedBirds] = useAtom(selectedBirdsAtom);
   const [birdTray, setBirdTray] = useAtom(birdTrayAtom);
@@ -47,7 +48,7 @@ const BirdCard = ({ bird, selected, tray }) => {
     if (isSetup) {
       //selected bird functionality
       if (selected) {
-        deselectCard(
+        cardSelection(
           selectedBirds,
           "common_name",
           common_name,
@@ -55,18 +56,18 @@ const BirdCard = ({ bird, selected, tray }) => {
           setSelectedBirds
         );
       } else {
-        selectCard(
+        cardSelection(
           birdHand,
           "common_name",
           common_name,
-          setBirdHand,
-          setSelectedBirds
+          setSelectedBirds,
+          setBirdHand
         );
       }
     } else {
       //bird tray functionality
       if (tray && selected) {
-        deselectCard(
+        cardSelection(
           birdTray,
           "common_name",
           common_name,
@@ -74,12 +75,12 @@ const BirdCard = ({ bird, selected, tray }) => {
           setBirdTray
         );
       } else if (!tray && selected) {
-        selectCard(
+        cardSelection(
           selectedBirds,
           "common_name",
           common_name,
-          setSelectedBirds,
-          setBirdTray
+          setBirdTray,
+          setSelectedBirds
         );
       }
     }

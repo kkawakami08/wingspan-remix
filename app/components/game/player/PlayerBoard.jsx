@@ -1,13 +1,18 @@
 import React from "react";
-import { PlayerBirdHand, PlayerBonusHand, PlayerFoodSupply } from "./";
+import {
+  PlayerBirdHand,
+  PlayerBonusHand,
+  PlayerFoodSupply,
+  PlayerMat,
+} from "./";
 
 const PlayerBoard = () => {
   return (
     <div>
-      <p>PlayerBoard</p>
       <PlayerBirdHand />
       {/* <PlayerBonusHand /> */}
-      {/* <PlayerFoodSupply /> */}
+      <PlayerFoodSupply />
+      <PlayerMat />
     </div>
   );
 };

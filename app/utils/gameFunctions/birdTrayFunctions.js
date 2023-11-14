@@ -1,13 +1,3 @@
-export const saveTraySelection = (
-  setBirdHand,
-  setStartingBirds,
-  startingBirds
-) => {
-  setBirdHand((prev) => [...prev, ...startingBirds]);
-
-  setStartingBirds([]);
-};
-
 export const refillTray = (birdTray, birdDeck, setBirdDeck, setBirdTray) => {
   let initialDeck = birdDeck;
   let newTray = [];
