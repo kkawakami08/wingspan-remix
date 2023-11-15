@@ -3,6 +3,7 @@ import PlayerBirdHand from "./PlayerBirdHand";
 import PlayerBonusHand from "./PlayerBonusHand";
 import PlayerFoodSupply from "./PlayerFoodSupply";
 import PlayerMat from "./PlayerMat";
+import Forest from "./mat/Forest";
 
 export {
   PlayerBoard,
@@ -10,4 +11,5 @@ export {
   PlayerBonusHand,
   PlayerFoodSupply,
   PlayerMat,
+  Forest,
 };

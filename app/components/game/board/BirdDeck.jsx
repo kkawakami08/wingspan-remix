@@ -4,13 +4,15 @@ import {
   birdDeckAtom,
   discardBirdCardsAtom,
   birdHandAtom,
+  testBirdDeckAtom,
+  testPlayerBirdHandAtom,
 } from "../../../utils/jotaiStore";
 import { BirdCard } from "../../gameComponents";
 import { drawCard } from "../../../utils/gameFunctions/cards";
 
 const BirdDeck = () => {
-  const [birdDeck, setBirdDeck] = useAtom(birdDeckAtom);
-  const [, setBirdHand] = useAtom(birdHandAtom);
+  const [birdDeck, setBirdDeck] = useAtom(testBirdDeckAtom);
+  const [, setBirdHand] = useAtom(testPlayerBirdHandAtom);
   const [birdDiscard] = useAtom(discardBirdCardsAtom);
 
   let lastDiscard = birdDiscard.length - 1;

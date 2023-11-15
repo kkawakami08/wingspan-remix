@@ -4,17 +4,20 @@ import {
   birdTrayAtom,
   selectedBirdsAtom,
   birdDeckAtom,
+  testBirdTrayAtom,
+  testPlayerBirdHandAtom,
+  testBirdDeckAtom,
 } from "../../../utils/jotaiStore";
 import { BirdCard } from "../../gameComponents";
 import { refillTray } from "../../../utils/gameFunctions/birdTrayFunctions";
 import { saveSelection } from "../../../utils/gameFunctions/generalFunctions";
 
 const BirdTray = () => {
-  const [birdTray, setBirdTray] = useAtom(birdTrayAtom);
+  const [birdTray, setBirdTray] = useAtom(testBirdTrayAtom);
 
   const [selectedBirds, setSelectedBirds] = useAtom(selectedBirdsAtom);
-  const [, setBirdHand] = useAtom(birdHandAtom);
-  const [birdDeck, setBirdDeck] = useAtom(birdDeckAtom);
+  const [, setBirdHand] = useAtom(testPlayerBirdHandAtom);
+  const [birdDeck, setBirdDeck] = useAtom(testBirdDeckAtom);
 
   const birdTrayContent = birdTray.map((bird) => (
     <BirdCard bird={bird} key={bird.common_name} tray={true} selected={true} />

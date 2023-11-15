@@ -1,10 +1,13 @@
 import React from "react";
 import { BirdCard } from "../../gameComponents";
 import { useAtom } from "jotai";
-import { birdHandAtom } from "../../../utils/jotaiStore";
+import {
+  birdHandAtom,
+  testPlayerBirdHandAtom,
+} from "../../../utils/jotaiStore";
 
 const PlayerBirdHand = () => {
-  const [birdHand, setBirdHand] = useAtom(birdHandAtom);
+  const [birdHand, setBirdHand] = useAtom(testPlayerBirdHandAtom);
 
   const birdHandContent = birdHand.map((bird) => (
     <BirdCard bird={bird} key={bird.common_name} />

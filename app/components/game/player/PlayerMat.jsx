@@ -1,9 +1,10 @@
-import React from "react";
+import { Forest } from "./";
 
 const PlayerMat = () => {
   return (
-    <div>
+    <div className="flex flex-col gap-5">
       <p>PlayeMat</p>
+      <Forest />
     </div>
   );
 };

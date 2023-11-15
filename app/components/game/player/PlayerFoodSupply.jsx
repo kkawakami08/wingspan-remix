@@ -1,10 +1,13 @@
 import React from "react";
 import { FoodToken } from "../../gameComponents";
 import { useAtom } from "jotai";
-import { playerFoodSupplyAtom } from "../../../utils/jotaiStore";
+import {
+  playerFoodSupplyAtom,
+  testPlayerFoodAtom,
+} from "../../../utils/jotaiStore";
 
 const PlayerFoodSupply = () => {
-  const [foodSupply, setFoodSupply] = useAtom(playerFoodSupplyAtom);
+  const [foodSupply, setFoodSupply] = useAtom(testPlayerFoodAtom);
 
   const foodSupplyContent = foodSupply.map((token) => (
     <FoodToken foodType={token} key={token.id} />

@@ -5,15 +5,15 @@ import { PlayerBoard } from "./player";
 
 const GameLayout = () => {
   return (
-    <div>
-      <div className="flex gap-10">
+    <div className="flex flex-col gap-5">
+      <PlayerBoard />
+      <BirdFeeder />
+      {/* <div className="flex gap-10">
         <BirdDeck />
         <BonusDeck />
       </div>
 
-      <BirdTray />
-      <BirdFeeder />
-      <PlayerBoard />
+      <BirdTray /> */}
     </div>
   );
 };

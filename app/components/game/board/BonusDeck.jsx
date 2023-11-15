@@ -4,13 +4,15 @@ import {
   bonusDeckAtom,
   discardBonusCardsAtom,
   bonusHandAtom,
+  testBonusDeckAtom,
+  testPlayerBonusHandAtom,
 } from "../../../utils/jotaiStore";
 import { BonusCard } from "../../gameComponents";
 import { drawCard } from "../../../utils/gameFunctions/cards";
 
 const BonusDeck = () => {
-  const [bonusDeck, setBonusDeck] = useAtom(bonusDeckAtom);
-  const [, setBonusHand] = useAtom(bonusHandAtom);
+  const [bonusDeck, setBonusDeck] = useAtom(testBonusDeckAtom);
+  const [, setBonusHand] = useAtom(testPlayerBonusHandAtom);
   const [bonusDiscard] = useAtom(discardBonusCardsAtom);
 
   let lastDiscard = bonusDiscard.length - 1;
