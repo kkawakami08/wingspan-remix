@@ -18,9 +18,7 @@ const Forest = () => {
   const [habitatBirdCount, setHabitatBirdCount] = useAtom(
     testForestBirdCountAtom
   );
-  const [disableDieSelection, setDisableDieSelection] = useAtom(
-    disableDieSelectionAtom
-  );
+  const [, setDisableDieSelection] = useAtom(disableDieSelectionAtom);
 
   const forestArray = Object.keys(forest);
   const forestContent = forestArray.map((space, index) => (

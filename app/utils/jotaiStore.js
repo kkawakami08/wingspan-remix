@@ -33,8 +33,8 @@ const initialRoll = rollBirdFeeder();
 const initialDisabledRolling = initialRoll.every(
   (die) => die.type === initialRoll[0].type
 )
-  ? true
-  : false;
+  ? false
+  : true;
 
 export const birdFeederAtom = atom(initialRoll);
 export const playerFoodSupplyAtom = atom(initializePlayerFoodSupply());
@@ -125,4 +125,4 @@ const initalForestHabitat = {
 };
 
 export const testForestAtom = atom(initalForestHabitat);
-export const testForestBirdCountAtom = atom(0);
+export const testForestBirdCountAtom = atom(2);

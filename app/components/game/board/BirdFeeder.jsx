@@ -37,7 +37,6 @@ const BirdFeeder = () => {
   const selectedFoodContent = selectedFood.map((item) => (
     <BirdFeederDie foodType={item} key={item.id} selected={true} />
   ));
-  // enableRolling(birdFeeder, setDisableRolling);
 
   const rollDice = () => {
     const newRoll = rollBirdFeeder();
@@ -53,7 +52,7 @@ const BirdFeeder = () => {
         <div className="flex gap-3 flex-wrap">{birdFeederContent}</div>
         <button
           className="p-1 border-2 border-slate-600 rounded-lg disabled:bg-red-500 disabled:text-slate-400"
-          disabled={!disableRolling}
+          disabled={disableRolling}
           onClick={rollDice}
         >
           Roll Dice

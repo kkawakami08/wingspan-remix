@@ -33,8 +33,8 @@ export const rollBirdFeeder = () => {
 
 export const enableRolling = (birdFeederSupply, setDisableRolling) => {
   if (birdFeederSupply.every((die) => die.type === birdFeederSupply[0].type)) {
-    setDisableRolling(true);
-  } else {
     setDisableRolling(false);
+  } else {
+    setDisableRolling(true);
   }
 };
