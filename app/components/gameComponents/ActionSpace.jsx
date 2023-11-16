@@ -6,20 +6,11 @@ import {
 } from "../../utils/jotaiStore";
 
 const ActionSpace = ({ space, habitat }) => {
-  const [forest, setForest] = useAtom(testForestAtom);
-  const [birdCount, setBirdCount] = useAtom(testForestBirdCountAtom);
+  const [forest] = useAtom(testForestAtom);
+  const [birdCount] = useAtom(testForestBirdCountAtom);
   const { type, quantity, discard } = forest[space].action;
   const { bird } = forest[space].bird || {};
   //   console.log(bird);
-  let typeCount = [];
-  for (let i = 0; i < quantity; i++) {
-    typeCount.push(type);
-  }
-  const typeContent = typeCount.map((item, index) => <p key={index}>{item}</p>);
-
-  // console.log("birds in forest", birdCount);
-  // console.log("space", space);
-  // console.log("space", space, birdCount === space);
 
   const spaceCSS =
     birdCount === Number(space)
@@ -28,10 +19,9 @@ const ActionSpace = ({ space, habitat }) => {
 
   return (
     <div className={spaceCSS}>
-      <p>{habitat}</p>
       <p>Space {space}</p>
-      <p>{typeContent}</p>
-      {discard !== "none" && <p>{discard}</p>}
+      <p>{quantity} dice</p>
+      <p>discard: {discard}</p>
     </div>
   );
 };

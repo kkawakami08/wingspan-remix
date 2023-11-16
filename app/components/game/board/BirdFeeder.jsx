@@ -3,36 +3,17 @@ import {
   birdFeederAtom,
   disableRollingAtom,
   selectedFoodAtom,
-  playerFoodSupplyAtom,
-  testForestAtom,
-  testForestBirdCountAtom,
-  testPlayerFoodAtom,
-  disableDieSelectionAtom,
-  additionalItemAtom,
 } from "../../../utils/jotaiStore";
 import { BirdFeederDie } from "../../gameComponents";
 import {
   enableRolling,
   rollBirdFeeder,
 } from "../../../utils/gameFunctions/birdFeederFunctions";
-import { saveSelection } from "../../../utils/gameFunctions/generalFunctions";
 
 const BirdFeeder = () => {
   const [birdFeeder, setBirdFeeder] = useAtom(birdFeederAtom);
   const [disableRolling, setDisableRolling] = useAtom(disableRollingAtom);
   const [selectedFood, setSelectedFood] = useAtom(selectedFoodAtom);
-  const [, setPlayerFoodSupply] = useAtom(playerFoodSupplyAtom);
-  const [, setDisableDieSelection] = useAtom(disableDieSelectionAtom);
-
-  const [, setTestPlayerFood] = useAtom(testPlayerFoodAtom);
-
-  const [forest] = useAtom(testForestAtom);
-  const [forestBirdCount] = useAtom(testForestBirdCountAtom);
-
-  const [additionalItem] = useAtom(additionalItemAtom);
-
-  const diceQuantity = forest[forestBirdCount].action.quantity + additionalItem;
-  console.log(`can now take ${diceQuantity} dice`);
 
   const birdFeederContent = birdFeeder.map((item) => (
     <BirdFeederDie foodType={item} key={item.id} />

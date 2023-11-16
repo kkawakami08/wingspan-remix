@@ -1,10 +1,4 @@
 import { ActionSpace } from "../../../gameComponents";
-//zero: take 1 die
-//one: take 1 die - disard card to get 1+
-//two: take 2 die
-//three: take 2 die - disard card to get 1+
-//four: take 3 die
-//full: take 3 die - disard card to get 1+
 import { useAtom } from "jotai";
 import {
   testForestAtom,
@@ -17,17 +11,14 @@ import { activateAction } from "../../../../utils/gameFunctions/habitatFunctions
 
 const Forest = () => {
   const [, setDiscardedBoolean] = useAtom(discardedItemBoolAtom);
-  const [forest, setForest] = useAtom(testForestAtom);
-  const [habitatBirdCount, setHabitatBirdCount] = useAtom(
-    testForestBirdCountAtom
-  );
+  const [forest] = useAtom(testForestAtom);
+  const [habitatBirdCount] = useAtom(testForestBirdCountAtom);
   const [, setDisableDieSelection] = useAtom(disableDieSelectionAtom);
 
-  const [currentActionType, setCurrentActionType] = useAtom(
-    currentActionTypeAtom
-  );
+  const [, setCurrentActionType] = useAtom(currentActionTypeAtom);
 
   const forestArray = Object.keys(forest);
+
   const forestContent = forestArray.map((space, index) => (
     <ActionSpace space={space} key={index} habitat={"forest"} />
   ));
@@ -37,7 +28,7 @@ const Forest = () => {
       className="flex gap-10 bg-emerald-500 "
       onClick={() => {
         activateAction(setDisableDieSelection, setCurrentActionType, "forest");
-        console.log(forest[habitatBirdCount].action.discard);
+
         if (forest[habitatBirdCount].action.discard !== "none") {
           setDiscardedBoolean(true);
         }

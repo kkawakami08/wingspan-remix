@@ -7,7 +7,7 @@ import {
 } from "../../../utils/jotaiStore";
 
 const PlayerBirdHand = () => {
-  const [birdHand, setBirdHand] = useAtom(testPlayerBirdHandAtom);
+  const [birdHand] = useAtom(testPlayerBirdHandAtom);
 
   const birdHandContent = birdHand.map((bird) => (
     <BirdCard

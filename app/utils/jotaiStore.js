@@ -130,4 +130,4 @@ const initalForestHabitat = {
 };
 
 export const testForestAtom = atom(initalForestHabitat);
-export const testForestBirdCountAtom = atom(5);
+export const testForestBirdCountAtom = atom(2);

@@ -3,7 +3,6 @@ import {
   birdFeederAtom,
   disableRollingAtom,
   selectedFoodAtom,
-  playerFoodSupplyAtom,
   testForestAtom,
   testForestBirdCountAtom,
   testPlayerFoodAtom,
@@ -17,20 +16,16 @@ import { enableRolling } from "../../../utils/gameFunctions/birdFeederFunctions"
 import { saveSelection } from "../../../utils/gameFunctions/generalFunctions";
 
 const BirdFeederSelection = () => {
-  const [birdFeeder, setBirdFeeder] = useAtom(birdFeederAtom);
-  const [disableRolling, setDisableRolling] = useAtom(disableRollingAtom);
+  const [birdFeeder] = useAtom(birdFeederAtom);
+  const [, setDisableRolling] = useAtom(disableRollingAtom);
   const [selectedFood, setSelectedFood] = useAtom(selectedFoodAtom);
-  const [, setPlayerFoodSupply] = useAtom(playerFoodSupplyAtom);
   const [, setDisableDieSelection] = useAtom(disableDieSelectionAtom);
   const [additionalItem, setAdditionalItem] = useAtom(additionalItemAtom);
-
   const [, setTestPlayerFood] = useAtom(testPlayerFoodAtom);
-
   const [forest] = useAtom(testForestAtom);
   const [forestBirdCount] = useAtom(testForestBirdCountAtom);
   const [, setCurrentActionType] = useAtom(currentActionTypeAtom);
-
-  const [discardedItem, setDiscardedItem] = useAtom(discardedItemBoolAtom);
+  const [, setDiscardedItem] = useAtom(discardedItemBoolAtom);
 
   const diceQuantity = forest[forestBirdCount].action.quantity + additionalItem;
 
@@ -40,7 +35,6 @@ const BirdFeederSelection = () => {
 
   const saveFood = () => {
     saveSelection(setTestPlayerFood, setSelectedFood, selectedFood);
-
     setDiscardedItem(false);
     setCurrentActionType("");
     setDisableDieSelection(true);

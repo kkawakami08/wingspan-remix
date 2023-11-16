@@ -7,7 +7,7 @@ import {
 } from "../../../utils/jotaiStore";
 
 const PlayerFoodSupply = () => {
-  const [foodSupply, setFoodSupply] = useAtom(testPlayerFoodAtom);
+  const [foodSupply] = useAtom(testPlayerFoodAtom);
 
   const foodSupplyContent = foodSupply.map((token) => (
     <FoodToken foodType={token} key={token.id} />

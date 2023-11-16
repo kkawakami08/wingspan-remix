@@ -2,21 +2,22 @@ import { useAtom } from "jotai";
 import {
   selectedBirdsAtom,
   discardBirdCardsAtom,
-  currentActionTypeAtom,
-  discardedItemBoolAtom,
   additionalItemAtom,
+  birdFeederAtom,
+  disableRollingAtom,
 } from "../../../utils/jotaiStore";
 import { BirdCard } from "../../gameComponents";
 import { saveSelection } from "../../../utils/gameFunctions/generalFunctions";
+import { enableRolling } from "../../../utils/gameFunctions/birdFeederFunctions";
 
 const BirdSelection = () => {
   const [selectedBirds, setSelectedBirds] = useAtom(selectedBirdsAtom);
 
   const [, setBirdDiscard] = useAtom(discardBirdCardsAtom);
-  const [, setCurrentActionType] = useAtom(currentActionTypeAtom);
 
-  const [, setDiscardedItem] = useAtom(discardedItemBoolAtom);
   const [, setAdditionalItem] = useAtom(additionalItemAtom);
+  const [birdFeeder] = useAtom(birdFeederAtom);
+  const [, setDisableRolling] = useAtom(disableRollingAtom);
 
   const disableDiscard = selectedBirds.length === 1;
 
@@ -31,11 +32,9 @@ const BirdSelection = () => {
   ));
 
   const discardSelection = () => {
-    console.log("Discarded");
     saveSelection(setBirdDiscard, setSelectedBirds, selectedBirds);
-    // setCurrentActionType("");
-    // setDiscardedItem(true);
     setAdditionalItem(1);
+    enableRolling(birdFeeder, setDisableRolling);
   };
 
   return (
