@@ -17,8 +17,17 @@ const ActionSpace = ({ space, habitat }) => {
   }
   const typeContent = typeCount.map((item, index) => <p key={index}>{item}</p>);
 
+  // console.log("birds in forest", birdCount);
+  // console.log("space", space);
+  // console.log("space", space, birdCount === space);
+
+  const spaceCSS =
+    birdCount === Number(space)
+      ? "bg-white border-2 border-slate-800 rounded-lg p-5"
+      : "border-2 border-slate-800 rounded-lg p-5";
+
   return (
-    <div className="border-2 border-slate-800 rounded-lg p-5">
+    <div className={spaceCSS}>
       <p>{habitat}</p>
       <p>Space {space}</p>
       <p>{typeContent}</p>

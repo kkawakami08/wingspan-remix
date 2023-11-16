@@ -4,6 +4,7 @@ import {
   discardBirdCardsAtom,
   currentActionTypeAtom,
   discardedItemBoolAtom,
+  additionalItemAtom,
 } from "../../../utils/jotaiStore";
 import { BirdCard } from "../../gameComponents";
 import { saveSelection } from "../../../utils/gameFunctions/generalFunctions";
@@ -15,6 +16,8 @@ const BirdSelection = () => {
   const [, setCurrentActionType] = useAtom(currentActionTypeAtom);
 
   const [, setDiscardedItem] = useAtom(discardedItemBoolAtom);
+  const [, setAdditionalItem] = useAtom(additionalItemAtom);
+
   const disableDiscard = selectedBirds.length === 1;
 
   const selectedBirdsContent = selectedBirds.map((bird) => (
@@ -31,7 +34,8 @@ const BirdSelection = () => {
     console.log("Discarded");
     saveSelection(setBirdDiscard, setSelectedBirds, selectedBirds);
     // setCurrentActionType("");
-    setDiscardedItem(1);
+    // setDiscardedItem(true);
+    setAdditionalItem(1);
   };
 
   return (

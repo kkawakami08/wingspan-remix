@@ -11,10 +11,12 @@ import {
   testForestBirdCountAtom,
   disableDieSelectionAtom,
   currentActionTypeAtom,
+  discardedItemBoolAtom,
 } from "../../../../utils/jotaiStore";
 import { activateAction } from "../../../../utils/gameFunctions/habitatFunctions";
 
 const Forest = () => {
+  const [, setDiscardedBoolean] = useAtom(discardedItemBoolAtom);
   const [forest, setForest] = useAtom(testForestAtom);
   const [habitatBirdCount, setHabitatBirdCount] = useAtom(
     testForestBirdCountAtom
@@ -35,6 +37,10 @@ const Forest = () => {
       className="flex gap-10 bg-emerald-500 "
       onClick={() => {
         activateAction(setDisableDieSelection, setCurrentActionType, "forest");
+        console.log(forest[habitatBirdCount].action.discard);
+        if (forest[habitatBirdCount].action.discard !== "none") {
+          setDiscardedBoolean(true);
+        }
       }}
     >
       <div className="flex flex-col">

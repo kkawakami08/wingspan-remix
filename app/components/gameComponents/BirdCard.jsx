@@ -7,6 +7,7 @@ import {
   currentActionTypeAtom,
   testForestBirdCountAtom,
   testPlayerBirdHandAtom,
+  discardedItemBoolAtom,
 } from "../../utils/jotaiStore";
 
 import { cardSelection } from "../../utils/gameFunctions/generalFunctions";
@@ -16,6 +17,7 @@ const BirdCard = ({ bird, selected, tray, hand }) => {
   const [isSetup] = useAtom(isSetupAtom);
   const [currentActionType] = useAtom(currentActionTypeAtom);
   const [forestBirdCount] = useAtom(testForestBirdCountAtom);
+  const [discardedItem] = useAtom(discardedItemBoolAtom);
 
   const {
     habitat,
@@ -75,7 +77,7 @@ const BirdCard = ({ bird, selected, tray, hand }) => {
   };
 
   const habitatFunction = () => {
-    if (currentActionType === "forest") {
+    if (currentActionType === "forest" && discardedItem) {
       discardItem(forestBirdCount, hand, birdSelection);
     } else {
       console.log("Nope");

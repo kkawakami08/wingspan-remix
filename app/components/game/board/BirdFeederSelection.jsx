@@ -10,6 +10,7 @@ import {
   disableDieSelectionAtom,
   discardedItemBoolAtom,
   currentActionTypeAtom,
+  additionalItemAtom,
 } from "../../../utils/jotaiStore";
 import { BirdFeederDie } from "../../gameComponents";
 import { enableRolling } from "../../../utils/gameFunctions/birdFeederFunctions";
@@ -21,6 +22,7 @@ const BirdFeederSelection = () => {
   const [selectedFood, setSelectedFood] = useAtom(selectedFoodAtom);
   const [, setPlayerFoodSupply] = useAtom(playerFoodSupplyAtom);
   const [, setDisableDieSelection] = useAtom(disableDieSelectionAtom);
+  const [additionalItem, setAdditionalItem] = useAtom(additionalItemAtom);
 
   const [, setTestPlayerFood] = useAtom(testPlayerFoodAtom);
 
@@ -30,8 +32,7 @@ const BirdFeederSelection = () => {
 
   const [discardedItem, setDiscardedItem] = useAtom(discardedItemBoolAtom);
 
-  const diceQuantity = forest[forestBirdCount].action.quantity + discardedItem;
-  console.log(`can now take ${diceQuantity} dice`);
+  const diceQuantity = forest[forestBirdCount].action.quantity + additionalItem;
 
   const selectedFoodContent = selectedFood.map((item) => (
     <BirdFeederDie foodType={item} key={item.id} selected={true} />
@@ -40,10 +41,11 @@ const BirdFeederSelection = () => {
   const saveFood = () => {
     saveSelection(setTestPlayerFood, setSelectedFood, selectedFood);
 
-    setDiscardedItem(0);
+    setDiscardedItem(false);
     setCurrentActionType("");
     setDisableDieSelection(true);
     enableRolling(birdFeeder, setDisableRolling);
+    setAdditionalItem(0);
   };
 
   const disableSave = selectedFood.length === diceQuantity;

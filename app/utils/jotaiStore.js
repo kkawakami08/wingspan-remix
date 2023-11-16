@@ -75,7 +75,8 @@ export const testPlayerBonusHandAtom = atom(testPlayerBonus);
 export const testBonusDeckAtom = atom(testBonusDeck);
 export const testPlayerFoodAtom = atom(initializePlayerFoodSupply());
 
-export const discardedItemBoolAtom = atom(0);
+export const discardedItemBoolAtom = atom(false);
+export const additionalItemAtom = atom(0);
 
 const initalForestHabitat = {
   0: {
@@ -129,4 +130,4 @@ const initalForestHabitat = {
 };
 
 export const testForestAtom = atom(initalForestHabitat);
-export const testForestBirdCountAtom = atom(1);
+export const testForestBirdCountAtom = atom(5);

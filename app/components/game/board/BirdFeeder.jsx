@@ -8,7 +8,7 @@ import {
   testForestBirdCountAtom,
   testPlayerFoodAtom,
   disableDieSelectionAtom,
-  discardedItemBoolAtom,
+  additionalItemAtom,
 } from "../../../utils/jotaiStore";
 import { BirdFeederDie } from "../../gameComponents";
 import {
@@ -29,9 +29,9 @@ const BirdFeeder = () => {
   const [forest] = useAtom(testForestAtom);
   const [forestBirdCount] = useAtom(testForestBirdCountAtom);
 
-  const [discardedItem] = useAtom(discardedItemBoolAtom);
+  const [additionalItem] = useAtom(additionalItemAtom);
 
-  const diceQuantity = forest[forestBirdCount].action.quantity + discardedItem;
+  const diceQuantity = forest[forestBirdCount].action.quantity + additionalItem;
   console.log(`can now take ${diceQuantity} dice`);
 
   const birdFeederContent = birdFeeder.map((item) => (
