@@ -49,8 +49,12 @@
 //   },
 // };
 
-export const activateAction = (habitat, birdCount, setDisableSupply) => {
-  console.log(`There are currently ${birdCount} birds`);
-  console.log(habitat[birdCount]);
+export const activateAction = (
+  setDisableSupply,
+  setActionType,
+  currentHabitat
+) => {
+  setActionType(currentHabitat);
+
   setDisableSupply(false);
 };

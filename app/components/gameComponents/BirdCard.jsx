@@ -4,12 +4,19 @@ import {
   selectedBirdsAtom,
   birdTrayAtom,
   isSetupAtom,
+  currentActionTypeAtom,
+  testForestBirdCountAtom,
+  testPlayerBirdHandAtom,
 } from "../../utils/jotaiStore";
 
 import { cardSelection } from "../../utils/gameFunctions/generalFunctions";
+import { discardItem } from "../../utils/gameFunctions/generalFunctions";
 
-const BirdCard = ({ bird, selected, tray }) => {
+const BirdCard = ({ bird, selected, tray, hand }) => {
   const [isSetup] = useAtom(isSetupAtom);
+  const [currentActionType] = useAtom(currentActionTypeAtom);
+  const [forestBirdCount] = useAtom(testForestBirdCountAtom);
+
   const {
     habitat,
     common_name,
@@ -42,56 +49,45 @@ const BirdCard = ({ bird, selected, tray }) => {
   const [selectedBirds, setSelectedBirds] = useAtom(selectedBirdsAtom);
   const [birdTray, setBirdTray] = useAtom(birdTrayAtom);
 
-  const [birdHand, setBirdHand] = useAtom(birdHandAtom);
+  const [birdHand, setBirdHand] = useAtom(testPlayerBirdHandAtom);
 
   const birdSelection = () => {
-    if (isSetup) {
-      //selected bird functionality
-      if (selected) {
-        cardSelection(
-          selectedBirds,
-          "common_name",
-          common_name,
-          setBirdHand,
-          setSelectedBirds
-        );
-      } else {
-        cardSelection(
-          birdHand,
-          "common_name",
-          common_name,
-          setSelectedBirds,
-          setBirdHand
-        );
-      }
+    if (selected) {
+      cardSelection(
+        selectedBirds,
+        "common_name",
+        common_name,
+        setBirdHand,
+        setSelectedBirds
+      );
+
+      console.log(`Set ${common_name} back in hand`);
     } else {
-      //bird tray functionality
-      if (tray && selected) {
-        cardSelection(
-          birdTray,
-          "common_name",
-          common_name,
-          setSelectedBirds,
-          setBirdTray
-        );
-      } else if (!tray && selected) {
-        cardSelection(
-          selectedBirds,
-          "common_name",
-          common_name,
-          setBirdTray,
-          setSelectedBirds
-        );
-      }
+      cardSelection(
+        birdHand,
+        "common_name",
+        common_name,
+        setSelectedBirds,
+        setBirdHand
+      );
+      console.log(`Set ${common_name} to discard`);
+    }
+  };
+
+  const habitatFunction = () => {
+    if (currentActionType === "forest") {
+      discardItem(forestBirdCount, hand, birdSelection);
+    } else {
+      console.log("Nope");
     }
   };
 
   return (
     <div
       className="border-2 border-slate-900 rounded-lg text-xs p-3 bg-emerald-200 w-52"
-      onClick={birdSelection}
+      onClick={habitatFunction}
     >
-      {selected && <p>SELECTED!</p>}
+      {/* {selected && <p>SELECTED!</p>} */}
       <p className="text-lg">{common_name}</p>
       <p className={powerColor}>Power: {description}</p>
 

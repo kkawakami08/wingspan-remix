@@ -48,6 +48,8 @@ export const selectedBirdsAtom = atom([]);
 export const startingBonusAtom = atom([]);
 export const selectedFoodAtom = atom([]);
 
+export const currentActionTypeAtom = atom("");
+
 //goal tiles
 
 export const goalTilesAtom = atom(selectGoalTiles());
@@ -72,6 +74,8 @@ export const testBirdTrayAtom = atom(testBirdTray);
 export const testPlayerBonusHandAtom = atom(testPlayerBonus);
 export const testBonusDeckAtom = atom(testBonusDeck);
 export const testPlayerFoodAtom = atom(initializePlayerFoodSupply());
+
+export const discardedItemBoolAtom = atom(0);
 
 const initalForestHabitat = {
   0: {
@@ -125,4 +129,4 @@ const initalForestHabitat = {
 };
 
 export const testForestAtom = atom(initalForestHabitat);
-export const testForestBirdCountAtom = atom(2);
+export const testForestBirdCountAtom = atom(1);

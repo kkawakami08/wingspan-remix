@@ -12,7 +12,7 @@ import {
   isSetupAtom,
 } from "../../utils/jotaiStore";
 import { BirdCard, BonusCard, FoodToken } from "../gameComponents";
-import { saveSelection } from "../../utils/gameSetup/gameSetup";
+import { saveInitialSelection } from "../../utils/gameSetup/gameSetup";
 
 const Setup = () => {
   const [, setIsSetup] = useAtom(isSetupAtom);

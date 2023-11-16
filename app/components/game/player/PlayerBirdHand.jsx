@@ -10,7 +10,13 @@ const PlayerBirdHand = () => {
   const [birdHand, setBirdHand] = useAtom(testPlayerBirdHandAtom);
 
   const birdHandContent = birdHand.map((bird) => (
-    <BirdCard bird={bird} key={bird.common_name} />
+    <BirdCard
+      bird={bird}
+      key={bird.common_name}
+      tray={false}
+      hand={true}
+      selected={false}
+    />
   ));
   return (
     <div>

@@ -59,7 +59,7 @@ export const initializePlayerFoodSupply = () => {
 
 //selecting initial cards
 
-export const saveSelection = (
+export const saveInitialSelection = (
   selectedCards,
   hand,
   setHand,

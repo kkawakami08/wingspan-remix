@@ -10,6 +10,7 @@ import {
   testForestAtom,
   testForestBirdCountAtom,
   disableDieSelectionAtom,
+  currentActionTypeAtom,
 } from "../../../../utils/jotaiStore";
 import { activateAction } from "../../../../utils/gameFunctions/habitatFunctions";
 
@@ -20,6 +21,10 @@ const Forest = () => {
   );
   const [, setDisableDieSelection] = useAtom(disableDieSelectionAtom);
 
+  const [currentActionType, setCurrentActionType] = useAtom(
+    currentActionTypeAtom
+  );
+
   const forestArray = Object.keys(forest);
   const forestContent = forestArray.map((space, index) => (
     <ActionSpace space={space} key={index} habitat={"forest"} />
@@ -28,9 +33,9 @@ const Forest = () => {
   return (
     <div
       className="flex gap-10 bg-emerald-500 "
-      onClick={() =>
-        activateAction(forest, habitatBirdCount, setDisableDieSelection)
-      }
+      onClick={() => {
+        activateAction(setDisableDieSelection, setCurrentActionType, "forest");
+      }}
     >
       <div className="flex flex-col">
         <p>forest</p>
